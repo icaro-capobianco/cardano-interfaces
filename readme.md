@@ -1,4 +1,18 @@
+Streamline data types, abstracted data access methods & data validation at runtime
 
-Data types split into modules, each module representing a source from which the data types where extracted
 
-Since some data types can obviously be simplified I wonder if it would be worth it to make this into an SDK which provides the types with wrapper classes containing helper functions 
+This is what I call data modules, works like a namespace
+```typescript
+import { Wallet } from 'WalletAPI'
+
+// Type
+let wallet : Wallet.Type
+
+// Validators
+Wallet.validate( wallet ).then...
+
+// Wrappers will facilitate accessing data from those nasty schemas
+const wrapped = new Wallet.Wrapper( wallet )
+
+// ...
+```
