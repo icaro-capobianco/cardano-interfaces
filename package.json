@@ -1,6 +1,6 @@
 {
-  "name": "cardano-interfaces",
-  "description": "Learning blockchain development by building a Wallet",
+  "name": "cardano-data-sdk",
+  "description": "Developing an SDK for cardano data types and access",
   "version": "1.0.0",
   "author": "Ícaro C. Capobianco",
   "homepage": "https://icaro-capobianco.github.io/cardano-metadata-viewer",
