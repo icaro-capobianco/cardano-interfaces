@@ -1,6 +1,8 @@
 {
   "name": "cardano-data-sdk",
   "description": "Developing an SDK for cardano data types and access",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "version": "1.0.0",
   "author": "Ícaro C. Capobianco",
   "license": "MIT",

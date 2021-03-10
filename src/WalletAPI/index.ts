@@ -2,6 +2,7 @@
  * @src https://input-output-hk.github.io/cardano-wallet/api/edge/
  */
 
+
 export type NumericalString = string
 export type ISO8601Date = string
 export type Amount<T extends string = string> = {
@@ -29,3 +30,5 @@ export type Mint = {
 	fingerprint: string,
 	quantity: number
 }
+
+export * as Wallet from './Wallet'

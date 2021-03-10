@@ -25,4 +25,5 @@ export declare type Mint = {
     fingerprint: string;
     quantity: number;
 };
+export * as Wallet from './Wallet';
 //# sourceMappingURL=index.d.ts.map

@@ -1,6 +1,6 @@
 import { Amount, Asset, Epoch, ISO8601Date } from "..";
 
-export type Wallet = {
+type Wallet = {
 	id: string,
 	address_pool_gap: number
 	balance: {
@@ -38,3 +38,10 @@ export type Wallet = {
 		height: Amount<'block'>
 	}
 }
+
+export type Type = Wallet
+
+/** In module hand made validation, TODO */
+export const validate = async ( data : Wallet ) => (
+	Promise.resolve( data )
+)

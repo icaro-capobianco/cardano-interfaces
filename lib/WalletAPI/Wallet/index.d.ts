@@ -1,5 +1,5 @@
 import { Amount, Asset, Epoch, ISO8601Date } from "..";
-export declare type Wallet = {
+declare type Wallet = {
     id: string;
     address_pool_gap: number;
     balance: {
@@ -37,4 +37,7 @@ export declare type Wallet = {
         height: Amount<'block'>;
     };
 };
+export declare type Type = Wallet;
+export declare const validate: (data: Wallet) => Promise<Wallet>;
+export {};
 //# sourceMappingURL=index.d.ts.map
