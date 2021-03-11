@@ -23,7 +23,7 @@ declare type Wallet = {
         }[];
     };
     name: string;
-    passphrase: {
+    passphrase?: {
         last_updated_at: ISO8601Date;
     };
     state: {
