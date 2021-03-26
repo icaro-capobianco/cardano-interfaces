@@ -5,8 +5,16 @@
 
 export type NumericalString = string
 export type ISO8601Date = string
+export type float = number
+export type int = number
+
+
+export type Delegation = {
+	status : 'not_delegating' | 'delegating'
+	target ?: StakePool['id']
+}
 export type Amount<T extends string = string> = {
-	quantity: 42000000,
+	quantity: number
 	unit: T
 }
 export type Epoch = {

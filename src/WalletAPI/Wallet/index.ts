@@ -1,16 +1,19 @@
-import { Amount, Asset, Epoch, ISO8601Date } from "..";
+import { Amount, Asset, Delegation, Epoch, int, ISO8601Date } from "..";
 
+/** @src https://input-output-hk.github.io/cardano-wallet/api/edge/#operation/getWallet */
 type Wallet = {
 
 	/** A unique identifier for the wallet */
 	id : string // 40 chars
 
 	/** Number of consecutive unused addresses allowed. */
-	address_pool_gap : number // 10 .. 100000
+	address_pool_gap : int // 10 .. 100000
 
 	/** Wallet current Ada balance(s) */
 	balance: {
 		available: Amount<'lovelace'>
+		reward: Amount<'lovelace'>
+		total: Amount<'lovelace'>
 	}
 
 	/** Current non-Ada asset holdings of the wallet. */
@@ -21,14 +24,10 @@ type Wallet = {
 
 	/** Delegation settings */
 	delegation: {
-		active: {
-			status: string
-			target: string
-		}
-		next: {
-			status: string,
+		active: Delegation
+		next: Delegation & {
 			changes_at: {
-				epoch_number: Epoch['number'],
+				epoch_number: Epoch['number']
 				epoch_start_time: ISO8601Date
 			}
 		}[]
@@ -42,22 +41,25 @@ type Wallet = {
 
 	/** Whether a wallet is ready to use or still syncing */
 	state: {
-		status: string
-	},
+		status: 'ready' | 'not_responding'
+	} | {
+		status: 'syncing'
+		progress: Amount<'percent'>
+	}
 
 	/** A reference to a particular time slot, and the block height at that point. */
 	tip: {
-		absolute_slot_number: number
-		number: number
+		absolute_slot_number: int
+		slot_number: int
 		epoch_number: Epoch['number']
-		time: ISO8601Date,
+		time: ISO8601Date
 		height: Amount<'block'>
 	}
 }
 
 export type Type = Wallet
 
-/** In module hand made validation, TODO */
-export const validate = async ( data : Wallet ) => (
-	Promise.resolve( data )
-)
+/** TODO */
+export const validate = async ( data : Wallet ) => {
+	throw new Error('Method not implemented')
+}
