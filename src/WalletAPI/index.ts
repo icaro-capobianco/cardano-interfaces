@@ -25,18 +25,11 @@ export type Asset = {
 	asset_name: string,
 	quantity: number
 }
-export type InputOutputSchema = {
-	id: string,
-	address: string,
-	amount: Amount,
-	assets: Asset[],
-	index: number
-}
 export type Mint = {
-	policy_id: string,
-	asset_name: string,
-	fingerprint: string,
-	quantity: number
+	policy_id: string
+	asset_name: string
+	fingerprint?: string
+	quantity: int
 }
 
 export * as Wallet from './Wallet'

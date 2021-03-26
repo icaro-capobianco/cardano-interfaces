@@ -1,43 +1,73 @@
-import { Amount, Epoch, InputOutputSchema, ISO8601Date, Mint } from "..";
+import { Amount, Asset, Epoch, int, ISO8601Date, Mint } from "..";
 import { Metadata } from "../Metadata";
 
+/** @src https://input-output-hk.github.io/cardano-wallet/api/edge/#operation/getTransaction */
 export type Transaction = {
-	id: string,
-	address_pool_gap: number,
-	amount: Amount,
-	fee: Amount,
-	deposit: Amount,
-	inserted_at: {
-		absolute_slot_number: number,
-		slot_number: number,
-		epoch_number: Epoch['number'],
-		time: ISO8601Date,
-		height: Amount
-	},
-	expires_at: {
-		absolute_slot_number: number,
-		epoch_number: Epoch['number'],
-		slot_number: number,
+
+	id: string
+
+	amount: Amount<'lovelace'>
+	fee: Amount<'lovelace'>
+	deposit: Amount<'lovelace'>
+
+	address_pool_gap: number
+
+	inserted_at ?: {
+		absolute_slot_number: int
+		slot_number: int
+		epoch_number: Epoch['number']
 		time: ISO8601Date
-	},
-	pending_since: {
-		absolute_slot_number: number,
-		slot_number: number,
-		epoch_number: Epoch['number'],
-		time: ISO8601Date,
-		height: Amount
-	},
-	depth: Amount,
-	direction: string,
-	inputs: InputOutputSchema[],
-	outputs: InputOutputSchema[],
+		height: Amount<'block'>
+	}
+	expires_at ?: {
+		absolute_slot_number: int
+		slot_number: int
+		epoch_number: Epoch['number']
+		time: ISO8601Date
+	}
+	pending_since ?: {
+		absolute_slot_number: int
+		slot_number: int
+		epoch_number: Epoch['number']
+		time: ISO8601Date
+		height: Amount<'block'>
+	}
+
+	depth ?: Amount<'block'>
+
+	direction: 'outgoing' | 'incoming'
+
+	inputs: {
+		id: string
+		index: int
+		address ?: string
+		amount ?: Amount<'lovelace'>
+		assets ?: Asset[]
+	}
+	outputs: {
+		address : string
+		amount : Amount<'lovelace'>
+		assets ?: Asset[]
+	}
+
 	withdrawals: [
 		{
-			stake_address: string,
+			stake_address: string
 			amount: Amount
 		}
-	],
-	mint: Mint[],
-	status: string,
+	]
+
+	/**
+	 * Assets minted (created) or unminted (destroyed)
+	 * This amount contributes to the total transaction value.
+	 * Positive values denote creation of assets and negative values denote the reverse.
+	 */
+	mint: Mint[]
+	status: 'pending' | 'in_ledger' | 'expired'
+
+	/**
+	 * Please note that metadata provided in a transaction will be stored on the blockchain forever. Make sure not to include any sensitive data, in particular personally identifiable information (PII).
+	 * More information at: https://input-output-hk.github.io/cardano-wallet/api/edge/#operation/getTransaction
+ 	 */
 	metadata: Metadata
 }
