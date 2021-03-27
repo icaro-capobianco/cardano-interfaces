@@ -2,7 +2,7 @@ import { Amount, Asset, Epoch, int, ISO8601Date, Mint } from "..";
 import { Metadata } from "../Metadata";
 
 /** @src https://input-output-hk.github.io/cardano-wallet/api/edge/#operation/getTransaction */
-export type Transaction = {
+type Transaction = {
 
 	id: string
 
@@ -71,3 +71,5 @@ export type Transaction = {
  	 */
 	metadata: Metadata
 }
+
+export type Type = Transaction
