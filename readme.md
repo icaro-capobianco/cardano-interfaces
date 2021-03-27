@@ -5,8 +5,7 @@
 - Abstracted functions for accessing data
 - Data validation at runtime
 
-This is what I call data modules, works like a namespace for a model
-
+Overall example
 ```typescript
 import { Wallet } from 'WalletAPI'
 

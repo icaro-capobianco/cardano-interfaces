@@ -1,7 +1,7 @@
 /** Types based on cardano-wallet API docs
  * @src https://input-output-hk.github.io/cardano-wallet/api/edge/
  */
-
+import * as StakePool from './StakePool'
 
 export type NumericalString = string
 export type ISO8601Date = string
@@ -11,7 +11,7 @@ export type int = number
 
 export type Delegation = {
 	status : 'not_delegating' | 'delegating'
-	target ?: StakePool['id']
+	target ?: StakePool.Type['id']
 }
 export type Amount<T extends string = string> = {
 	quantity: number
@@ -33,3 +33,6 @@ export type Mint = {
 }
 
 export * as Wallet from './Wallet'
+export * as Transaction from './Transaction'
+export * as StakePool from './StakePool'
+export * as Metadata from './Metadata'
