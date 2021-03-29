@@ -4,16 +4,15 @@ import curry from 'typed-curry'
 export type String = { string: string }
 export type Int = { int: int }
 export type ByteString = { bytes: string }
-
-export type SimpleMetadata = String | Int | ByteString
-export type List = { list: SimpleMetadata[] }
+export type List = { list: Union[] }
 export type Map = { map: { k : Union, v : Union }[] }
-export type Union = SimpleMetadata | List | Map
+
+export type Union = String | Int | ByteString | List | Map
 export type Intersection = String & Int & ByteString & List & Map
 
 export type Metadata = {
 	/** All top-level keys must be integers between 0 and 2^64 - 1. */
-	[ k in  NumericalString ] : SimpleMetadata | List | Map
+	[ k in  NumericalString ] : Union
 }
 
 export const get = curry( ( number : keyof Metadata, metadata : Metadata ) => metadata[number] )
