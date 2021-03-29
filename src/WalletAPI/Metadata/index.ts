@@ -1,11 +1,11 @@
 import { int, NumericalString } from ".."
 import curry from 'typed-curry'
 
-export type String = { string: string }
-export type Int = { int: int }
+export type String     = { string: string }
+export type Int        = { int: int }
 export type ByteString = { bytes: string }
-export type List = { list: Union[] }
-export type Map = { map: { k : Union, v : Union }[] }
+export type List       = { list: Union[] }
+export type Map        = { map: { k : Union, v : Union }[] }
 
 export type Union = String | Int | ByteString | List | Map
 export type Intersection = String & Int & ByteString & List & Map
